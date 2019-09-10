@@ -268,9 +268,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mFaceVerifyHandler = new RepeatedVerifyHandler(this,10, ResourceHelper.getLicensePath(mContext), this );
         mVideoRecord = new VideoRecord();
 
-        if (!AppUtils.isDebug()) {
-            vbTakePic.setVisibility(View.GONE);
-        }
+//        if (!AppUtils.isDebug()) {
+//            vbTakePic.setVisibility(View.GONE);
+//        }
     }
 
     private void switchCamera() {

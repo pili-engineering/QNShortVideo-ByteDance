@@ -45,9 +45,6 @@ android {
     }
 }
 
-dependencies {
-    compile 'com.qiniu:qiniu-android-sdk:7.3.11'
-}
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
