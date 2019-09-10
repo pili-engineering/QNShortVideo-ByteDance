@@ -1,11 +1,5 @@
 apply plugin: 'com.android.application'
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
@@ -69,7 +63,6 @@ dependencies {
     api 'com.github.castorflex.smoothprogressbar:library:1.1.0'
     api project(path: ':effectsdk')
     // develop mode
-    //compile(name: 'effectsdk', ext: 'aar')     // release mode
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     // Optional, if you use support library fragments:
