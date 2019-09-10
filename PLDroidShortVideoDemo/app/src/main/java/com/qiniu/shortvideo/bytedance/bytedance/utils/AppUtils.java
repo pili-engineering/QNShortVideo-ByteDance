@@ -10,7 +10,7 @@ import static android.content.Context.UI_MODE_SERVICE;
 
 public class AppUtils {
 
-    private static boolean isDebug = false;
+    private static boolean isDebug = true;
     // for test 使用yuv 不推荐启用，会有帧不同步问题
     private static boolean useYuv = false;
 
