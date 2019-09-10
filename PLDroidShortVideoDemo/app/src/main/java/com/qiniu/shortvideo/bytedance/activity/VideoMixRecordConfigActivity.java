@@ -1,0 +1,48 @@
+package com.qiniu.shortvideo.bytedance.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.qiniu.shortvideo.bytedance.R;
+import com.qiniu.shortvideo.bytedance.activity.VideoMixRecordActivity;
+
+import static com.qiniu.shortvideo.bytedance.activity.VideoMixRecordActivity.MIX_MODE;
+import static com.qiniu.shortvideo.bytedance.activity.VideoMixRecordActivity.MIX_MODE_CAMERA_ABOVE_SAMPLE;
+import static com.qiniu.shortvideo.bytedance.activity.VideoMixRecordActivity.MIX_MODE_SAMPLE_ABOVE_CAMERA;
+import static com.qiniu.shortvideo.bytedance.activity.VideoMixRecordActivity.MIX_MODE_VERTICAL;
+
+
+public class VideoMixRecordConfigActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mix_record_config);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(false);
+        }
+
+        setTitle(R.string.title_mix_record);
+    }
+
+    public void onClickVerticalMix(View view) {
+        jumpToActivity(VideoMixRecordActivity.class, MIX_MODE_VERTICAL);
+    }
+
+    public void onClickSampleAboveCameraMix(View view) {
+        jumpToActivity(VideoMixRecordActivity.class, MIX_MODE_SAMPLE_ABOVE_CAMERA);
+    }
+
+    public void onClickCameraAboveSampleMix(View view) {
+        jumpToActivity(VideoMixRecordActivity.class, MIX_MODE_CAMERA_ABOVE_SAMPLE);
+    }
+
+    private void jumpToActivity(Class<?> cls, int mixMode) {
+        Intent intent = new Intent(this, cls);
+        intent.putExtra(MIX_MODE, mixMode);
+        startActivity(intent);
+    }
+}
