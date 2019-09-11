@@ -1,0 +1,88 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Bugly (2.5.0)
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - FLAnimatedImage (1.0.12)
+  - HappyDNS (0.3.15)
+  - KVOController (1.2.0)
+  - Mantle (2.1.0):
+    - Mantle/extobjc (= 2.1.0)
+  - Mantle/extobjc (2.1.0)
+  - Masonry (1.1.0)
+  - PLShortVideoKit (2.2.0):
+    - PLShortVideoKit/ex-libMuseProcessor (= 2.2.0)
+    - PLShortVideoKit/libMuseProcessor (= 2.2.0)
+    - Qiniu (= 7.2.5)
+  - PLShortVideoKit/ex-libMuseProcessor (2.2.0):
+    - Qiniu (= 7.2.5)
+  - PLShortVideoKit/libMuseProcessor (2.2.0):
+    - Qiniu (= 7.2.5)
+  - Qiniu (7.2.5):
+    - HappyDNS (~> 0.3)
+  - SSZipArchive (2.2.2)
+  - Toast (4.0.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - Bugly (= 2.5.0)
+  - Crashlytics (= 3.8.4)
+  - Fabric (= 1.6.11)
+  - FLAnimatedImage (= 1.0.12)
+  - KVOController (= 1.2.0)
+  - Mantle (= 2.1.0)
+  - Masonry (= 1.1.0)
+  - PLShortVideoKit
+  - Qiniu (= 7.2.5)
+  - SSZipArchive
+  - Toast (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Bugly
+    - Crashlytics
+    - Fabric
+    - FLAnimatedImage
+    - HappyDNS
+    - KVOController
+    - Mantle
+    - Masonry
+    - PLShortVideoKit
+    - Qiniu
+    - SSZipArchive
+    - Toast
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  HappyDNS: 00c15e651a347206e58a20503a32a5564589b56a
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  PLShortVideoKit: 2cd567eaa83a4451945a2db630dfae95c1d5f763
+  Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+
+PODFILE CHECKSUM: 8e495206cf74c9923713a774a900daf14496b5eb
+
+COCOAPODS: 1.7.5

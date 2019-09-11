@@ -1,0 +1,17 @@
+platform :ios, '8.0'
+inhibit_all_warnings!
+
+target 'PLShortVideoKitDemo' do
+   pod 'PLShortVideoKit'
+   pod 'Qiniu', '7.2.5'
+   pod 'Fabric', '1.6.11'
+   pod 'Crashlytics', '3.8.4'
+   pod 'FLAnimatedImage', '1.0.12'
+   pod 'Masonry', '1.1.0'
+   pod 'Bugly', '2.5.0'
+   pod 'KVOController', '1.2.0'
+   pod 'Toast', '~> 4.0.0'
+   pod 'Mantle', '2.1.0'
+   pod 'AFNetworking', '~> 3.0'
+   pod 'SSZipArchive'
+end
