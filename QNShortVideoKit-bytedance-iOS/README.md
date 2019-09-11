@@ -1,6 +1,8 @@
 # 1 QNShortVideo with ByteDance
 这个开源示例代码演示了 [七牛短视频](https://www.qiniu.com/products/plsv) 快速集成字节跳动检测、特效、贴纸等效果的集成姿势。
 
+###注意：‎⁨由于字节跳动中的贴纸资源过大，demo 中压缩成 zip 方便管理，在运行前，请前往  QNShortVideo-ByteDance⁩ ▸ ⁨QNShortVideoKit-bytedance-iOS⁩ ▸ ⁨PLShortVideoKitDemo⁩ ▸ ⁨ByteEffects⁩ ▸ ⁨Resource⁩ 中解压 StickerResource.bundle.zip
+
 # 2 功能点介绍
 
 这个示例代码中，主要在视频录制的时候，演示了字节跳动检测、特效、贴纸等效果。详细功能展示如下：
