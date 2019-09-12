@@ -476,7 +476,7 @@ static NSArray *faceMakeUpLipArray(){
     dispatch_once(&onceToken, ^{
         array = @[
                   @[ NSLocalizedString(@"close", nil), @"lip", @"iconCloseButtonNormal", @"iconCloseButtonSelected"],
-                  @[ NSLocalizedString(@"lip_huluopohong", nil), @"lip/huluobohong", @"iconFaceMakeUpLipsNormal", @"iconFaceMakeUpLipsSelected"],
+//                  @[ NSLocalizedString(@"lip_huluopohong", nil), @"lip/huluobohong", @"iconFaceMakeUpLipsNormal", @"iconFaceMakeUpLipsSelected"],
                   @[NSLocalizedString(@"lip_huoliju", nil), @"lip/huoliju", @"iconFaceMakeUpLipsNormal", @"iconFaceMakeUpLipsSelected"],
                   @[NSLocalizedString(@"lip_yingsuhong", nil), @"lip/yingsuhong", @"iconFaceMakeUpLipsNormal", @"iconFaceMakeUpLipsSelected"],
                   ];

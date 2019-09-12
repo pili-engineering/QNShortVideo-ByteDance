@@ -100,6 +100,7 @@ static uint64_t getUptimeInNanosecondWithMachTime(uint64_t machTime) {
 
 - (void)dealloc
 {
+    [self.shortVideoRecorder.previewView removeFromSuperview];
     self.shortVideoRecorder.delegate = nil;
     self.shortVideoRecorder = nil;
 
@@ -111,7 +112,6 @@ static uint64_t getUptimeInNanosecondWithMachTime(uint64_t machTime) {
     
     [self setupShortVideoRecorder];
     [self _setupUI];
-    
     [self addObserver];
 }
 
@@ -120,22 +120,13 @@ static uint64_t getUptimeInNanosecondWithMachTime(uint64_t machTime) {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     lastEffectStatue = BefEffectNone;
     [self createCamera];
-    [self.shortVideoRecorder startCaptureSession];
-    [self.shortVideoRecorder deleteAllFiles];
     self.bufferPause = NO;
+    [self.shortVideoRecorder startCaptureSession];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    [self.shortVideoRecorder stopCaptureSession];
-    self.bufferPause = YES;
-    self.ciContext = nil;
-    [self.glView removeFromSuperview];
-    _processor = nil;
-    _processor.delegate = nil;
-    
 }
 
 - (void)viewSafeAreaInsetsDidChange{
@@ -150,7 +141,7 @@ static uint64_t getUptimeInNanosecondWithMachTime(uint64_t machTime) {
     
     // 返回
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(10, 10, 35, 35);
+    backButton.frame = CGRectMake(10, 35, 25, 25);
     [backButton setBackgroundImage:[UIImage imageNamed:@"ic_back"] forState:UIControlStateNormal];
     [backButton setBackgroundImage:[UIImage imageNamed:@"ic_back"] forState:UIControlStateHighlighted];
     [backButton addTarget:self action:@selector(backButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -805,7 +796,13 @@ static uint64_t getUptimeInNanosecondWithMachTime(uint64_t machTime) {
     [self setStickerUnSelected];
     [self setEffectPickerUnSelected];
     [self.progressBar deleteAllProgress];
-    self.durationLabel.text = @"0.0f";
+    self.durationLabel.text = @"0.00f";
+    
+    self.bufferPause = YES;
+    [self.shortVideoRecorder stopCaptureSession];
+    [self.shortVideoRecorder deleteAllFiles];
+    [self.glView removeFromSuperview];
+    
     [self presentViewController:videoEditViewController animated:YES completion:nil];
 }
 
