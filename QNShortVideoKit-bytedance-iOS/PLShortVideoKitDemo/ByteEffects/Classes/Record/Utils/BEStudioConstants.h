@@ -1,0 +1,29 @@
+// Copyright (C) 2019 Beijing Bytedance Network Technology Co., Ltd.
+
+#import <Foundation/Foundation.h>
+
+static NSString *const BEEffectNotificationUserInfoKey = @"data";
+
+FOUNDATION_EXTERN NSString *const BEEffectFaceDetectDataDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectGestureDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectBodyDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFaceBeautyDataDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFaceBeautyTypeDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFilterDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFilterIntensityDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectSegmentationDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectCameraDidAuthorizationNotification;
+FOUNDATION_EXTERN NSString *const BEEffectSegmentationDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectCameraDidAuthorizationNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFaceVerifyPickerNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFaceVerifyImageNotification;
+
+FOUNDATION_EXTERN NSString *const BEEffectQRCodeDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectNetworkStickerReadyNotification;
+FOUNDATION_EXTERN NSString *const BEEffectNetworkNotReachedNotification;
+
+FOUNDATION_EXTERN NSString *const BEEffectFaceDistanceDidChangeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectDidReturnToMainUINotification;
+
+FOUNDATION_EXTERN NSString *const BEEffectFaceMakeupComposeNotification;
+FOUNDATION_EXTERN NSString *const BEEffectFaceMakeupComposeSelectedNotification;
