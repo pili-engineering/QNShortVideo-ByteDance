@@ -1,28 +1,33 @@
 package com.qiniu.shortvideo.bytedance.bytedance.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.FragmentVPAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.qiniu.shortvideo.bytedance.bytedance.fragment.FaceClusterFragment.REQUEST_CODE_CHOOSE;
+
 public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFragment.IIdentifyCallback>
-        implements MainActivity.OnCloseListener {
+        implements VideoRecordActivity.OnCloseListener {
     private TabLayout tl;
     private ViewPager vp;
 
+    public Fragment mFaceClusterFragment;
     private List<Fragment> mFragmentList;
 
     @Nullable
@@ -63,7 +68,8 @@ public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFr
         // 添加人像对比 Fragment
         mFragmentList.add(new FaceVerifyFragment().setCallback(getCallback()));
         titleList.add(getString(R.string.tab_face_verify));
-        mFragmentList.add(new FaceClusterFragment().setCallback(getCallback()));
+        mFaceClusterFragment= new FaceClusterFragment().setCallback(getCallback());
+        mFragmentList.add(mFaceClusterFragment);
         titleList.add(getString(R.string.tab_face_cluster));
 
         // 添加距离检测 Fragment
@@ -80,11 +86,13 @@ public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFr
     @Override
     public void onClose() {
         for (Fragment f : mFragmentList) {
-            if (f instanceof MainActivity.OnCloseListener) {
-                ((MainActivity.OnCloseListener) f).onClose();
+            if (f instanceof VideoRecordActivity.OnCloseListener) {
+                ((VideoRecordActivity.OnCloseListener) f).onClose();
             }
         }
     }
+
+
 
     public interface IIdentifyCallback extends
             FaceDetectFragment.IFaceCallback,

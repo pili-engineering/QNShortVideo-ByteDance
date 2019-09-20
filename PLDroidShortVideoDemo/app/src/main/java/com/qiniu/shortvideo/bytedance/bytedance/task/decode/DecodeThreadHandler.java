@@ -16,7 +16,7 @@ import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.qiniu.shortvideo.bytedance.bytedance.CameraDevice;
+import com.qiniu.shortvideo.bytedance.bytedance.view.ViewfinderView;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -98,7 +98,7 @@ public class DecodeThreadHandler extends Handler {
     private Result decode(byte[] bytes, int width, int height) {
         Result rawResult = null;
         RGBLuminanceSource source = new RGBLuminanceSource(width, height, byte2Int(bytes));
-        Rect frameRect = CameraDevice.get().getFrameRect(width, height);
+        Rect frameRect = ViewfinderView.scanRect;
         if (source != null && null != frameRect) {
             int left = frameRect.left > source.getWidth() ? 0 : frameRect.left;
             int top = frameRect.top > source.getHeight() ? 0 : frameRect.top;

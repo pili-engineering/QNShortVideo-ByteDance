@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.CommonUtils;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.ToasUtils;
@@ -19,7 +19,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
  */
 public class SkeletonDetectFragment
         extends BaseFeatureFragment<IPresenter, SkeletonDetectFragment.ISkeletonCallback>
-        implements View.OnClickListener, MainActivity.OnCloseListener {
+        implements View.OnClickListener, VideoRecordActivity.OnCloseListener {
     private ButtonView bvSkeleton;
 
     public interface ISkeletonCallback {

@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.FragmentVPAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.OnPageChangeListenerAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.EffectContract;
@@ -68,7 +68,7 @@ import static com.qiniu.shortvideo.bytedance.bytedance.contract.ItemGetContract.
 
 
 public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter, EffectFragment.IEffectCallback>
-        implements MainActivity.OnCloseListener, MakeupOptionFragment.IMakeupOptionCallback, EffectContract.View {
+        implements VideoRecordActivity.OnCloseListener, MakeupOptionFragment.IMakeupOptionCallback, EffectContract.View {
     public static final int POSITION_BEAUTY = 0;
     public static final int POSITION_RESHAPE = 1;
     public static final int POSITION_BODY = 2;
@@ -377,8 +377,8 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
 
         // 调用子 View onClose
         for (Fragment f : mFragmentList) {
-            if (f instanceof MainActivity.OnCloseListener) {
-                ((MainActivity.OnCloseListener) f).onClose();
+            if (f instanceof VideoRecordActivity.OnCloseListener) {
+                ((VideoRecordActivity.OnCloseListener) f).onClose();
             }
         }
     }
@@ -416,7 +416,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
         mBeautyProgressMap.clear();
 
         // 调用子 Fragment 关闭 UI
-        MainActivity.OnCloseListener listener = (MainActivity.OnCloseListener) mFragmentList.get(POSITION_BEAUTY);
+        VideoRecordActivity.OnCloseListener listener = (VideoRecordActivity.OnCloseListener) mFragmentList.get(POSITION_BEAUTY);
         listener.onClose();
     }
 
@@ -424,7 +424,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
         mPresenter.removeNodesOfType(mComposerNodeMap, TYPE_BEAUTY_BODY);
         updateComposerNodes();
         // 调用子 Fragment 关闭 UI
-        MainActivity.OnCloseListener listener = (MainActivity.OnCloseListener) mFragmentList.get(POSITION_BODY);
+        VideoRecordActivity.OnCloseListener listener = (VideoRecordActivity.OnCloseListener) mFragmentList.get(POSITION_BODY);
         listener.onClose();
     }
 
@@ -435,7 +435,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
         int index;
         mMakeupProgressMap.clear();
 
-        MainActivity.OnCloseListener listener = (MainActivity.OnCloseListener) mFragmentList.get(POSITION_RESHAPE);
+        VideoRecordActivity.OnCloseListener listener = (VideoRecordActivity.OnCloseListener) mFragmentList.get(POSITION_RESHAPE);
         listener.onClose();
     }
 
@@ -445,7 +445,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
 
         mMakeupOptionSelectMap.clear();
 
-        MainActivity.OnCloseListener listener = (MainActivity.OnCloseListener) mFragmentList.get(POSITION_MAKEUP);
+        VideoRecordActivity.OnCloseListener listener = (VideoRecordActivity.OnCloseListener) mFragmentList.get(POSITION_MAKEUP);
         listener.onClose();
     }
 

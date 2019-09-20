@@ -333,8 +333,6 @@
 
     <string name="cost">耗时</string>
     <string name="cost_default">耗时:0ms</string>
-    <string name="logo">字节跳动 人工智能</string>
-    <string name="product">Byte Effect SDK</string>
     <string name="no_face_detected">未检测到人脸</string>
     <string name="face_more_than_one">检测到超过一张人脸</string>
     <string name="sticker_without_license">素材未发现授权文件</string>

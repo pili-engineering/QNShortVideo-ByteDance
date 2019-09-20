@@ -11,6 +11,5 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ToasUtils.init(this);
-
     }
 }

@@ -7,21 +7,20 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.qiniu.shortvideo.bytedance.R;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.BaseActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.WelcomeContract;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.presenter.WelcomePresenter;
-import com.qiniu.shortvideo.bytedance.bytedance.utils.CommonUtils;
 
 /**
- * 欢迎界面
+ * 加载资源界面
  */
 public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> implements WelcomeContract.View {
-    private TextView mTvVersion;
+
     private Button mBtStart;
     private ProgressBar mProgressBar;
 
@@ -36,26 +35,16 @@ public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> imp
             mPresenter.startTask();
         } else {
             mBtStart.setEnabled(true);
-            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            Intent intent = new Intent(WelcomeActivity.this, VideoRecordActivity.class);
+            intent.putExtras(getIntent());
             startActivity(intent);
             this.finish();
         }
     }
 
     private void initView() {
-        mTvVersion = findViewById(R.id.tv_version);
         mBtStart = findViewById(R.id.bt_start);
         mProgressBar = findViewById(R.id.progress);
-        mBtStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CommonUtils.isFastClick()) {
-                    return;
-                }
-                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
         // 增加隐藏功能：长按重新加载资源，避免更换资源后要重装应用
         mBtStart.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -64,14 +53,12 @@ public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> imp
                 return true;
             }
         });
-        mTvVersion.setText(mPresenter.getVersionName());
     }
 
     @Override
     public void onStartTask() {
         mBtStart.setEnabled(false);
         mBtStart.setText(getString(R.string.resource_prepare));
-
         mProgressBar.setIndeterminate(true);
         mProgressBar.setVisibility(View.VISIBLE);
     }
@@ -82,11 +69,12 @@ public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> imp
         if (result) {
             mBtStart.setText(getString(R.string.start));
             mBtStart.setEnabled(true);
-        } else {
-            Toast.makeText(this, getString(R.string.resource_ready), Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            Intent intent = new Intent(WelcomeActivity.this, VideoRecordActivity.class);
+            intent.putExtras(getIntent());
             startActivity(intent);
             finish();
+        } else {
+            Toast.makeText(this, getString(R.string.resource_ready), Toast.LENGTH_LONG).show();
         }
     }
 

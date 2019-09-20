@@ -10,7 +10,6 @@ import static android.content.Context.UI_MODE_SERVICE;
 
 public class AppUtils {
 
-    private static boolean isDebug = true;
     // for test 使用yuv 不推荐启用，会有帧不同步问题
     private static boolean useYuv = false;
 
@@ -23,12 +22,6 @@ public class AppUtils {
 
     // 加速glreadPixels 针对低性能GPU能加速，但不建议开启，会有帧不同步问题
     private static boolean accGlReadPixels = false;
-    // 适配特殊设备
-    private static SupportMode supportMode = SupportMode.NORMAL;
-
-    public static SupportMode getSupportMode() {
-        return supportMode;
-    }
 
     public static boolean isAccGlReadPixels(){
         return accGlReadPixels;
@@ -36,10 +29,6 @@ public class AppUtils {
 
     public static boolean isUseYuv(){
         return useYuv;
-    }
-
-    public static boolean isDebug() {
-        return isDebug;
     }
 
     /**
@@ -52,40 +41,5 @@ public class AppUtils {
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(UI_MODE_SERVICE);
         return (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION);
     }
-
-    /**
-     * 当前是否是横屏
-     *
-     * @param context
-     * @return
-     */
-    public static boolean isLandScape(Context context) {
-        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-
-
-    }
-
-    /**
-     * 是否支持触摸屏
-     * @param context
-     * @return
-     */
-    public static boolean hasTouchScreen(Context context) {
-
-        if (context == null) {
-            return false;
-        }
-
-        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
-
-                || context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH);
-
-    }
-
-    public enum  SupportMode{
-        NORMAL,
-        HR
-    }
-
 
 }

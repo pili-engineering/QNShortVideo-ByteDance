@@ -241,8 +241,6 @@
     <string name="similarity_default">similarity:0.00</string>
 
     <string name="cost_default">cost:0ms</string>
-    <string name="logo">ByteDance AI</string>
-    <string name="product">Byte Effect SDK</string>
     <string name="no_face_detected">no face detected</string>
     <string name="face_more_than_one">faces deteced more than one</string>
     <string name="sticker_without_license">license for sticker is missing</string>

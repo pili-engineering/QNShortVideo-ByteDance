@@ -129,14 +129,6 @@
             android:onClick="onClickVideoMix"
             android:text="视频拼图" />
 
-        <Button
-            android:id="@+id/bytedance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:onClick="onClickByteDance"
-            android:text="字节跳动" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

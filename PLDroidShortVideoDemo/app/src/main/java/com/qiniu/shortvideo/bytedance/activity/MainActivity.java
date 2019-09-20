@@ -171,19 +171,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickByteDance(View view) {
-        if (isPermissionOK()) {
-            jumpToActivity(WelcomeActivity.class);
-        }
-    }
-
     private void jumpToActivity(Class<?> cls) {
         Intent intent = new Intent(MainActivity.this, cls);
         startActivity(intent);
     }
 
     public void jumpToCaptureActivity() {
-        Intent intent = new Intent(MainActivity.this, VideoRecordActivity.class);
+        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
         intent.putExtra(VideoRecordActivity.PREVIEW_SIZE_RATIO, mPreviewSizeRatioSpinner.getSelectedItemPosition());
         intent.putExtra(VideoRecordActivity.PREVIEW_SIZE_LEVEL, mPreviewSizeLevelSpinner.getSelectedItemPosition());
         intent.putExtra(VideoRecordActivity.ENCODING_MODE, mEncodingModeLevelSpinner.getSelectedItemPosition());

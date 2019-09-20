@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.CommonUtils;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.ToasUtils;
@@ -18,7 +18,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
  * 人脸Fragment
  */
 public class FaceDetectFragment extends BaseFeatureFragment<IPresenter, FaceDetectFragment.IFaceCallback>
-        implements View.OnClickListener, MainActivity.OnCloseListener {
+        implements View.OnClickListener, VideoRecordActivity.OnCloseListener {
     // 106关键点跟踪
     private ButtonView bv106;
     // 280关键点检测

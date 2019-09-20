@@ -98,8 +98,6 @@ public class OpenGLRender {
 
     private Context mContext;
 
-    private MainActivity mainActivity;
-
     private FloatBuffer mTextureBuffer;
     private FloatBuffer mVertexBuffer;
     private FloatBuffer mOriginVertexBuffer;
@@ -292,10 +290,6 @@ public class OpenGLRender {
         }
     }
 
-    public void setMainActivity(MainActivity m) {
-        mainActivity = m;
-    }
-
     public void init(int width, int height) {
         if (mViewPortWidth == width && mViewPortHeight == height) {
             return;
@@ -390,18 +384,6 @@ public class OpenGLRender {
         }
         mVertexBuffer.clear();
         mVertexBuffer.put(cube).position(0);
-        if (AppUtils.isDebug()) {
-            mainActivity.info = new StringBuilder();
-            mainActivity.info.append("Camera ori=" + CameraDevice.get().getOrientation() + "  displayW =" + displayW + " displayH =" + displayH + " imageW =" + imageW + " imageH =" + imageH);
-            mainActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mainActivity.tvInfo.setText(mainActivity.info);
-
-                }
-            });
-        }
-
     }
 
     /**

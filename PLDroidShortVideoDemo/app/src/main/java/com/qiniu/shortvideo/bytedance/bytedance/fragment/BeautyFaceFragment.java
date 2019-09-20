@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.ButtonViewRVAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.ItemGetContract;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.presenter.ItemGetPresenter;
@@ -19,7 +19,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.model.ButtonItem;
 import java.util.List;
 
 public class BeautyFaceFragment extends BaseFeatureFragment<ItemGetContract.Presenter, BeautyFaceFragment.IBeautyCallBack>
-        implements EffectFragment.IProgressCallback, MainActivity.OnCloseListener, ButtonViewRVAdapter.OnItemClickListener, ItemGetContract.View {
+        implements EffectFragment.IProgressCallback, VideoRecordActivity.OnCloseListener, ButtonViewRVAdapter.OnItemClickListener, ItemGetContract.View {
     private RecyclerView rv;
     private int mType;
 

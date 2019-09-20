@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.BitmapUtils;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.CommonUtils;
@@ -28,7 +28,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FaceVerifyFragment
         extends BaseFeatureFragment<IPresenter, FaceVerifyFragment.IFaceVerifyCallback>
-        implements View.OnClickListener, MainActivity.OnCloseListener {
+        implements View.OnClickListener, VideoRecordActivity.OnCloseListener {
     private int REQUEST_ALBUM = 1001;
 
     private ButtonView bvNone;

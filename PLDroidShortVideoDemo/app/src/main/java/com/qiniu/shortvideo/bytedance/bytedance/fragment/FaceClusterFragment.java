@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import static com.zhihu.matisse.MimeType.PNG;
 import static com.zhihu.matisse.MimeType.WEBP;
 
 public class FaceClusterFragment extends BaseFeatureFragment implements FaceClusterMgr.ClusterCallback, FaceClusterAdapter.OnItemClickListener {
-    private static final int REQUEST_CODE_CHOOSE = 10;
+    public static final int REQUEST_CODE_CHOOSE = 10;
     private View mIvClear;
     private View mIvAdd;
     private RecyclerView mRvFaceList;
@@ -177,8 +178,8 @@ public class FaceClusterFragment extends BaseFeatureFragment implements FaceClus
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+        Log.e("飞","传递到了"+requestCode);
+        if (requestCode == REQUEST_CODE_CHOOSE  && resultCode == RESULT_OK) {
 
             LogUtils.d( "Uris: " + Matisse.obtainResult(data));
             LogUtils.d("Paths: " + Matisse.obtainPathResult(data));
@@ -187,6 +188,7 @@ public class FaceClusterFragment extends BaseFeatureFragment implements FaceClus
             mChoosePicture = Matisse.obtainPathResult(data);
             setData();
         }
+
     }
 
     @Override

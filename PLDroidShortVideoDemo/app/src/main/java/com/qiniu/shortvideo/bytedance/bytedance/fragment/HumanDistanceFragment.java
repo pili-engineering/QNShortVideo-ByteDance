@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
 
@@ -17,7 +17,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
  */
 public class HumanDistanceFragment
         extends BaseFeatureFragment<IPresenter, HumanDistanceFragment.IDistCallback>
-        implements MainActivity.OnCloseListener, View.OnClickListener {
+        implements VideoRecordActivity.OnCloseListener, View.OnClickListener {
     private ButtonView bv;
 
     @Override

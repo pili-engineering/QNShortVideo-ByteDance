@@ -16,7 +16,6 @@ public interface WelcomeContract {
     abstract class Presenter extends BasePresenter<View> {
         public abstract void startTask();
         public abstract int getVersionCode();
-        public abstract String getVersionName();
         public abstract boolean resourceReady();
     }
 }

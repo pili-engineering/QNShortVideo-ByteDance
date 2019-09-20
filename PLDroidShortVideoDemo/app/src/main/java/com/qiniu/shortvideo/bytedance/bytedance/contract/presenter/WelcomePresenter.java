@@ -40,17 +40,6 @@ public class WelcomePresenter extends WelcomeContract.Presenter implements Unzip
     }
 
     @Override
-    public String getVersionName() {
-        Context context = getView().getContext();
-        try {
-            return "v " + context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
-    @Override
     public boolean resourceReady() {
         return ResourceHelper.isResourceReady(getView().getContext(), getVersionCode());
     }
@@ -73,6 +62,7 @@ public class WelcomePresenter extends WelcomeContract.Presenter implements Unzip
             alreadyUnzipNum++;
             UnzipTask mTask = new UnzipTask(this);
             mTask.execute(ResourceHelper.OtherResourceZip);
+            return;
         }
         if (result) {
             ResourceHelper.setResourceReady(getView().getContext(), result, getVersionCode());

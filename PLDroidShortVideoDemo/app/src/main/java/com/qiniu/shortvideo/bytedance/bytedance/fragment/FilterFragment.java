@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.FilterRVAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.FilterContract;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.presenter.FilterPresenter;
@@ -23,7 +23,7 @@ import java.io.File;
  */
 public class FilterFragment extends BaseFeatureFragment<FilterContract.Presenter, FilterFragment.IFilterCallback>
         implements FilterRVAdapter.OnItemClickListener, EffectFragment.IProgressCallback,
-        MainActivity.OnCloseListener, FilterContract.View {
+        VideoRecordActivity.OnCloseListener, FilterContract.View {
     private RecyclerView rv;
 
     public interface IFilterCallback {

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.base.IPresenter;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.CommonUtils;
 import com.qiniu.shortvideo.bytedance.bytedance.utils.ToasUtils;
@@ -18,7 +18,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
  * 手势
  */
 public class HandDetectFragment extends BaseFeatureFragment<IPresenter, HandDetectFragment.IHandCallBack>
-        implements View.OnClickListener, MainActivity.OnCloseListener {
+        implements View.OnClickListener, VideoRecordActivity.OnCloseListener {
     private ButtonView bvHand;
 
     public interface IHandCallBack {

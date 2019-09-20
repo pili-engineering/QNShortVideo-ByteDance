@@ -13,7 +13,6 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 
@@ -135,21 +134,10 @@ public class EffectRenderHelper {
 
     private Context mContext;
 
-    private MainActivity mainView;
-
-    public void setMainActivity(MainActivity mainActivity) {
-        this.mainView = mainActivity;
-        mGLRender.setMainActivity(mainActivity);
-
-    }
-
-
-
-
-    static abstract class ResultCallback<T> {
+    public static abstract class ResultCallback<T> {
         private Class<T> clazz;
 
-        abstract void doResult(T t, int framecount);
+        public abstract void doResult(T t, int framecount);
 
         // 使用反射得到T的真实类型
         public Class getRealGenericType() {
@@ -176,7 +164,6 @@ public class EffectRenderHelper {
         mFaceVerify = new FaceVerify();
         mHumanDistance = new HumanDistance();
         mPetFaceDetector = new PetFaceDetect();
-
     }
 
 
@@ -206,22 +193,23 @@ public class EffectRenderHelper {
     /**
      * 初始化特效入口，需要提前设置特效输入的图像尺寸，底层初始化人脸检测算法时需要
      * fix 开启美颜后切换相机导致的瘦脸 大眼 特效不生效的问题
+     *
      * @param context
      * @return
      */
     public int initEffect(Context context) {
-        if (mImageHeight == 0 || mImageWidth == 0){
+        if (mImageHeight == 0 || mImageWidth == 0) {
             LogUtils.e("mImageHeight & mImageWidth shoule be initialized before call initEffect()");
             return BEF_RESULT_FAIL;
         }
-        int ret = mRenderManager.init(context, ResourceHelper.getModelDir(context), ResourceHelper.getLicensePath(context),mImageWidth, mImageHeight);
-        if (ret != BEF_RESULT_SUC){
-            LogUtils.e("mRenderManager.init failed!! ret ="+ret);
+        int ret = mRenderManager.init(context, ResourceHelper.getModelDir(context), ResourceHelper.getLicensePath(context), mImageWidth, mImageHeight);
+        if (ret != BEF_RESULT_SUC) {
+            LogUtils.e("mRenderManager.init failed!! ret =" + ret);
             return ret;
         }
         ret = mRenderManager.setComposer(ResourceHelper.getComposeMakeupComposerPath(context));
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("mRenderManager.setComposer failed!! ret ="+ret);
+            LogUtils.e("mRenderManager.setComposer failed!! ret =" + ret);
 
         }
         return ret;
@@ -229,7 +217,7 @@ public class EffectRenderHelper {
     }
 
     public int initTest(Context context, String licensePath) {
-        if (mImageHeight == 0 || mImageWidth == 0){
+        if (mImageHeight == 0 || mImageWidth == 0) {
             LogUtils.e("mImageHeight & mImageWidth shoule be initialized before call initEffect()");
             return BEF_RESULT_FAIL;
         }
@@ -249,32 +237,32 @@ public class EffectRenderHelper {
             LogUtils.e("mHandDetector createHandle fail！ret =" + flag);
             return flag;
         }
-        int ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT, ResourceHelper.getHandModelPath(context,DetectParamFile));
+        int ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT, ResourceHelper.getHandModelPath(context, DetectParamFile));
         if (BEF_RESULT_SUC != ret) {
-            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context,DetectParamFile));
+            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context, DetectParamFile));
             return ret;
         }
 
-        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG, ResourceHelper.getHandModelPath(context,BoxRegParamFile));
+        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG, ResourceHelper.getHandModelPath(context, BoxRegParamFile));
         if (BEF_RESULT_SUC != ret) {
-            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context,BoxRegParamFile));
-            return ret;
-
-        }
-
-        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS, ResourceHelper.getHandModelPath(context,GestureParamFile));
-
-        if (BEF_RESULT_SUC != ret) {
-            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context,GestureParamFile));
+            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context, BoxRegParamFile));
             return ret;
 
         }
 
-        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT, ResourceHelper.getHandModelPath(context,KeyPointParamFile));
+        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS, ResourceHelper.getHandModelPath(context, GestureParamFile));
+
+        if (BEF_RESULT_SUC != ret) {
+            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context, GestureParamFile));
+            return ret;
+
+        }
+
+        ret = mHandDetector.setModel(BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT, ResourceHelper.getHandModelPath(context, KeyPointParamFile));
         LogUtils.d("mHandDetector.setModel ret =" + ret);
 
         if (BEF_RESULT_SUC != ret) {
-            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context,KeyPointParamFile));
+            LogUtils.e("mHandDetector set model fail, path =" + ResourceHelper.getHandModelPath(context, KeyPointParamFile));
             return ret;
 
         }
@@ -347,7 +335,7 @@ public class EffectRenderHelper {
      * @return
      */
     public int initHumanDistance(Context context, float cameraFov) {
-        int ret = mHumanDistance.init(context, ResourceHelper.getFaceModelPath(context),ResourceHelper.getFaceAttriModelPath(context),cameraFov, ResourceHelper.getLicensePath(context));
+        int ret = mHumanDistance.init(context, ResourceHelper.getFaceModelPath(context), ResourceHelper.getFaceAttriModelPath(context), cameraFov, ResourceHelper.getLicensePath(context));
         if (BEF_RESULT_SUC != ret) {
             LogUtils.e("mHumanDistance init fail, ret=" + ret);
         }
@@ -365,7 +353,7 @@ public class EffectRenderHelper {
 
     private int framecounts = 0;
 
-    Bitmap mCameraBitmap = null;
+    public Bitmap mCameraBitmap = null;
 
 
     Bitmap getBitmapFromPixels(ByteBuffer byteBuffer, int width, int height) {
@@ -406,7 +394,7 @@ public class EffectRenderHelper {
         if (AppUtils.isTv(mContext)) {
             deviceRotation = 0;
         }
-        int totalRotation = (cameraRotation - deviceRotation + 360)%360;
+        int totalRotation = (cameraRotation - deviceRotation + 360) % 360;
         BytedEffectConstants.Rotation rotation = BytedEffectConstants.Rotation.CLOCKWISE_ROTATE_0;
         switch (totalRotation) {
             case 90:
@@ -430,30 +418,14 @@ public class EffectRenderHelper {
                 LogUtils.e(" YV12 format not supported");
                 break;
             default:
-                    break;
+                break;
         }
 
-        ByteBuffer yuvInputBuffer = ByteBuffer.allocateDirect((mImageWidth * mImageHeight * 3 /2));
+        ByteBuffer yuvInputBuffer = ByteBuffer.allocateDirect((mImageWidth * mImageHeight * 3 / 2));
         yuvInputBuffer.put(data);
         ByteBuffer rgbaOutputBuffer = ByteBuffer.allocateDirect((mImageWidth * mImageHeight * 3 / 2));
         rgbaOutputBuffer.position(0);
-
-
-        mRenderManager.processBuffer(yuvInputBuffer,rotation, pixlFormat.getValue(),mImageHeight,mImageWidth,mImageHeight * 4,rgbaOutputBuffer.array(),BytedEffectConstants.PixlFormat.BEF_AI_PIX_FMT_NV21.getValue());
-        if (AppUtils.isDebug() && mainView.mImageView.getVisibility() == View.VISIBLE) {
-            if (rgbaOutputBuffer != null) {
-                getBitmapFromYuv(rgbaOutputBuffer, mImageHeight, mImageWidth);
-                mainView.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainView.mImageView.setImageBitmap(mCameraBitmap);
-                    }
-                });
-            }
-
-
-        }
-
+        mRenderManager.processBuffer(yuvInputBuffer, rotation, pixlFormat.getValue(), mImageHeight, mImageWidth, mImageHeight * 4, rgbaOutputBuffer.array(), BytedEffectConstants.PixlFormat.BEF_AI_PIX_FMT_NV21.getValue());
     }
 
 
@@ -499,7 +471,7 @@ public class EffectRenderHelper {
                 break;
         }
         //根据开启的算法组合动态设置resize ratio
-        mGLRender.setResizeRatio(InputSizeManager.getPreferSampleSize(mContext,this, mImageWidth, mImageHeight));
+        mGLRender.setResizeRatio(InputSizeManager.getPreferSampleSize(mContext, this, mImageWidth, mImageHeight));
         // 因为可能动态改变retio 所以每次重新分配内存 上线应用建议使用预分配一次的方式
         int mInputWidth = (int) (mImageWidth * mGLRender.getResizeRatio());
         int mInputHeight = (int) (mImageHeight * mGLRender.getResizeRatio());
@@ -517,9 +489,7 @@ public class EffectRenderHelper {
 
         }
         if (isDetect106Face) {
-            BefFaceInfo faceInfo = mFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation);
+            BefFaceInfo faceInfo = mFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation);
             LogUtils.d("faceInfo =" + faceInfo.toString());
 
             mGLRender.setFaceInfo(faceInfo);
@@ -528,28 +498,19 @@ public class EffectRenderHelper {
 
         }
         if (isDetectSkeleton) {
-            BefSkeletonInfo skeletonInfo = mSkeletonDetector.detectSkeleton(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation);
+            BefSkeletonInfo skeletonInfo = mSkeletonDetector.detectSkeleton(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation);
             mGLRender.setSkeletonInfo(skeletonInfo);
 
         }
 
         if (isDetectHand) {
-            BefHandInfo handInfo = mHandDetector.detectHand(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation, BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT.getValue() |
-                            BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG.getValue() |
-                            BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS.getValue() |
-                            BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT.getValue(), HAND_DETECT_DELAY_FRAME_COUNT);
+            BefHandInfo handInfo = mHandDetector.detectHand(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation, BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT.getValue(), HAND_DETECT_DELAY_FRAME_COUNT);
             mGLRender.setHandInfo(handInfo);
             dispatchResult(BefHandInfo.class, handInfo, framecounts);
         }
 
         if (isMattingPortrait) {
-            PortraitMatting.MattingMask mattingMask = mPortaitMatting.detectMatting(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation, false);
+            PortraitMatting.MattingMask mattingMask = mPortaitMatting.detectMatting(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation, false);
             if (mattingMask == null) {
                 LogUtils.d("mattingMask == null");
             }
@@ -557,55 +518,35 @@ public class EffectRenderHelper {
         }
 
         if (isParsingHair) {
-            HairParser.HairMask hairMask = mHairParser.parseHair(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation, false);
+            HairParser.HairMask hairMask = mHairParser.parseHair(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation, false);
             mGLRender.setmHairMask(hairMask);
-
         }
 
         if (isDetectPetFace) {
-            BefPetFaceInfo faceInfo = mPetFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                    mInputWidth, mInputHeight, mInputWidth * 4,
-                    deviceRotation);
+            BefPetFaceInfo faceInfo = mPetFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, mInputWidth, mInputHeight, mInputWidth * 4, deviceRotation);
             LogUtils.d("petFaceInfo =" + faceInfo.toString());
 
             mGLRender.setPetFaceInfo(faceInfo);
 
             dispatchResult(BefPetFaceInfo.class, faceInfo, framecounts);
-
         }
-        if (AppUtils.isDebug() && mainView.mImageView.getVisibility() == View.VISIBLE) {
-            if (resizeInputBuffer != null) {
-                getBitmapFromPixels(resizeInputBuffer, mInputWidth, mInputHeight);
-            } else {
-                resizeInputBuffer = ByteBuffer.wrap(data);
-                getBitmapFromPixels(resizeInputBuffer, mInputWidth, mInputHeight);
-            }
-
-            mainView.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mainView.mImageView.setImageBitmap(mCameraBitmap);
-                }
-            });
-        }
-
     }
 
-    public CaptureResult capture(){
-        if (null == mGLRender){
+    public CaptureResult capture() {
+        if (null == mGLRender) {
             return null;
         }
-        return new CaptureResult(mGLRender.captureRenderResult(),mImageWidth, mImageHeight);
+        return new CaptureResult(mGLRender.captureRenderResult(), mImageWidth, mImageHeight);
     }
 
-    public int processTexture(int textureID, BytedEffectConstants.Rotation rotation,double timestamp) {
+
+    public int processTexture(int textureID, BytedEffectConstants.Rotation rotation, double timestamp) {
         framecounts++;
         if (framecounts == 1000000) {
             framecounts = 0;
         }
-        int srcTexture = mGLRender.preProcess(textureID);
+//        int srcTexture = mGLRender.preProcess(textureID);
+        int srcTexture = textureID;
         int dstTexture = mGLRender.getOutputTexture();
         if (dstTexture == ShaderHelper.NO_TEXTURE) {
             return srcTexture;
@@ -639,7 +580,7 @@ public class EffectRenderHelper {
 
         } else {
             // 根据开启的算法组合动态设置resize ratio
-            mGLRender.setResizeRatio(InputSizeManager.getPreferSampleSize(mContext,this, mImageWidth, mImageHeight));
+            mGLRender.setResizeRatio(InputSizeManager.getPreferSampleSize(mContext, this, mImageWidth, mImageHeight));
             float ratio = mGLRender.getResizeRatio();
             int width = (int) (mImageWidth * ratio);
             int height = (int) (mImageHeight * ratio);
@@ -649,9 +590,7 @@ public class EffectRenderHelper {
                 resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 resizeInputBuffer.position(0);
 
-                BefFaceInfo faceInfo = mFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation);
+                BefFaceInfo faceInfo = mFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation);
                 if (faceInfo != null) {
                     mGLRender.drawFaces(faceInfo, dstTexture);
                 }
@@ -664,9 +603,7 @@ public class EffectRenderHelper {
                     resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 }
                 resizeInputBuffer.position(0);
-                BefSkeletonInfo skeletonInfo = mSkeletonDetector.detectSkeleton(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation);
+                BefSkeletonInfo skeletonInfo = mSkeletonDetector.detectSkeleton(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation);
                 if (skeletonInfo != null) {
                     mGLRender.drawSkeleton(skeletonInfo, dstTexture);
                 }
@@ -677,12 +614,7 @@ public class EffectRenderHelper {
                     resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 }
                 resizeInputBuffer.position(0);
-                BefHandInfo handInfo = mHandDetector.detectHand(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation, BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT.getValue() |
-                                BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG.getValue() |
-                                BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS.getValue() |
-                                BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT.getValue(), HAND_DETECT_DELAY_FRAME_COUNT);
+                BefHandInfo handInfo = mHandDetector.detectHand(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation, BytedEffectConstants.HandModelType.BEF_HAND_MODEL_DETECT.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_BOX_REG.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_GESTURE_CLS.getValue() | BytedEffectConstants.HandModelType.BEF_HAND_MODEL_KEY_POINT.getValue(), HAND_DETECT_DELAY_FRAME_COUNT);
                 if (handInfo != null) {
                     Log.d(TAG, handInfo.toString());
                     mGLRender.drawHands(handInfo, dstTexture);
@@ -698,15 +630,12 @@ public class EffectRenderHelper {
                     resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 }
                 resizeInputBuffer.position(0);
-                PortraitMatting.MattingMask mattingMask = mPortaitMatting.detectMatting(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation, false);
+                PortraitMatting.MattingMask mattingMask = mPortaitMatting.detectMatting(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation, false);
                 if (mattingMask != null) {
                     Log.d(TAG, mattingMask.toString());
                     mGLRender.drawMattingMask(mattingMask, dstTexture);
                 } else {
                     Log.d(TAG, "potrait mask is null");
-
                 }
             }
 
@@ -715,15 +644,12 @@ public class EffectRenderHelper {
                     resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 }
                 resizeInputBuffer.position(0);
-                HairParser.HairMask hairMask = mHairParser.parseHair(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation, false);
+                HairParser.HairMask hairMask = mHairParser.parseHair(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation, false);
                 if (hairMask != null) {
                     Log.d(TAG, hairMask.toString());
                     mGLRender.drawHairMask(hairMask, dstTexture);
                 } else {
                     Log.d(TAG, "hairMask is null");
-
                 }
             }
 
@@ -733,26 +659,20 @@ public class EffectRenderHelper {
                 }
                 resizeInputBuffer.position(0);
 
-                BefDistanceInfo humanDistanceResult = mHumanDistance.detectDistance(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation);
-                if (humanDistanceResult != null){
+                BefDistanceInfo humanDistanceResult = mHumanDistance.detectDistance(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation);
+                if (humanDistanceResult != null) {
                     mGLRender.drawHumanDist(humanDistanceResult, dstTexture);
                 }
 
                 dispatchResult(BefDistanceInfo.class, humanDistanceResult, framecounts);
-
-
             }
 
-            if (isDetectPetFace){
+            if (isDetectPetFace) {
                 if (resizeInputBuffer == null) {
                     resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
                 }
                 resizeInputBuffer.position(0);
-                BefPetFaceInfo petFaceInfo = mPetFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888,
-                        width, height, width * 4,
-                        rotation);
+                BefPetFaceInfo petFaceInfo = mPetFaceDetector.detectFace(resizeInputBuffer, BytedEffectConstants.PixlFormat.RGBA8888, width, height, width * 4, rotation);
                 if (petFaceInfo != null) {
                     Log.d(TAG, petFaceInfo.toString());
                     mGLRender.drawPetFaces(petFaceInfo, dstTexture);
@@ -780,26 +700,12 @@ public class EffectRenderHelper {
 
             }
 
-            if (AppUtils.isDebug() && mainView.mImageView.getVisibility() == View.VISIBLE) {
-                if (resizeInputBuffer != null) {
-                    getBitmapFromPixels(resizeInputBuffer, width, height);
-                } else {
-                    resizeInputBuffer = mGLRender.getResizeOutputTextureBuffer(dstTexture);
-                    getBitmapFromPixels(resizeInputBuffer, width, height);
-                }
-
-                mainView.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainView.mImageView.setImageBitmap(mCameraBitmap);
-                    }
-                });
-            }
         }
 
 
         return dstTexture;
     }
+
 
     private ConcurrentLinkedQueue<Message> mMsgList = new ConcurrentLinkedQueue<>();
 
@@ -851,6 +757,7 @@ public class EffectRenderHelper {
 
     /**
      * 设置SDK的输入尺寸，该尺寸是转至人脸为正后的宽高
+     *
      * @param mImageWidth
      * @param mImageHeight
      */
@@ -903,64 +810,64 @@ public class EffectRenderHelper {
         // 初始化手势检测器
         int ret = initHandDetector(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initHandDetector ret ="+ret);
+            LogUtils.e("initHandDetector ret =" + ret);
             sendUIToastMsg("Hand Initialization failed");
         }
 
         ret = initFace(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initFace ret ="+ret);
+            LogUtils.e("initFace ret =" + ret);
             sendUIToastMsg("FaceInitialization failed");
         }
 
         ret = initPetFaceDetect(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initPetFace ret ="+ret);
+            LogUtils.e("initPetFace ret =" + ret);
             sendUIToastMsg("PetFaceInitialization failed");
         }
 
         ret = initFaceExtra(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initFaceExtra ret ="+ret);
+            LogUtils.e("initFaceExtra ret =" + ret);
             sendUIToastMsg("Face Extra Initialization failed");
         }
 
         ret = initFaceAttri(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initFaceAttri ret ="+ret);
+            LogUtils.e("initFaceAttri ret =" + ret);
             sendUIToastMsg("FaceAttr Initialization failed");
         }
 
         ret = initEffect(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initEffect ret ="+ret);
+            LogUtils.e("initEffect ret =" + ret);
             sendUIToastMsg("Effect Initialization failed");
         }
 
         ret = initSkeleton(mContext);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initSkeleton ret ="+ret);
+            LogUtils.e("initSkeleton ret =" + ret);
             sendUIToastMsg("Skeleton Initialization failed");
         }
 
         ret = initPortraitMatting(mContext, BytedEffectConstants.PortraitMatting.BEF_PORTAITMATTING_SMALL_MODEL);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initPortraitMatting ret ="+ret);
+            LogUtils.e("initPortraitMatting ret =" + ret);
             sendUIToastMsg("portraitmatting Initialization failed");
         }
 
         ret = initHairParse(mContext, InputSizeManager.HairCutInput.x, InputSizeManager.HairCutInput.y);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initHairParse ret ="+ret);
+            LogUtils.e("initHairParse ret =" + ret);
             sendUIToastMsg("hairparsing Initialization failed");
         }
         float cameraFov = 60;
-        if (AppUtils.isTv(mContext)){
+        if (AppUtils.isTv(mContext)) {
             cameraFov = 36;
         }
         ret = initHumanDistance(mContext, cameraFov);
         if (ret != BEF_RESULT_SUC) {
-            LogUtils.e("initHumanDistance ret ="+ret);
+            LogUtils.e("initHumanDistance ret =" + ret);
             sendUIToastMsg("HumanDistance Initialization failed");
         }
         initedSDKModules = true;
@@ -982,6 +889,7 @@ public class EffectRenderHelper {
 
     /**
      * 设置特效组合，目前仅支持美颜 美妆 两种特效的任意叠加
+     *
      * @param nodes
      * @return
      */
@@ -1010,6 +918,7 @@ public class EffectRenderHelper {
 
     /**
      * 更新组合特效中某个节点的强度
+     *
      * @param node 特效素材对应的 ComposerNode
      * @return
      */
@@ -1022,6 +931,7 @@ public class EffectRenderHelper {
     /**
      * 开启或者关闭贴纸 如果path为空 关闭贴纸
      * 注意 贴纸和Composer类型的特效（美颜、美妆）是互斥的，如果同时设置设置，后者会取消前者的效果
+     *
      * @param path 贴纸素材的文件路径
      */
     public boolean setSticker(String path) {
@@ -1039,7 +949,7 @@ public class EffectRenderHelper {
      */
     public boolean updateIntensity(BytedEffectConstants.IntensityType intensitytype, float intensity) {
         boolean result = mRenderManager.updateIntensity(intensitytype.getId(), intensity);
-        if (result){
+        if (result) {
             storedIntensities.put(intensitytype, intensity);
         }
         return result;
@@ -1080,7 +990,7 @@ public class EffectRenderHelper {
 
     }
 
-     /**
+    /**
      * 开启/关闭 宠物脸关键点检测
      *
      * @param flag
@@ -1097,13 +1007,13 @@ public class EffectRenderHelper {
     }
 
 
-
     /**
      * 开启或者关闭距离估计
+     *
      * @param flag
      */
-    public void setHumanDistOn(boolean flag){
-        isDetectDistance  = flag;
+    public void setHumanDistOn(boolean flag) {
+        isDetectDistance = flag;
 
 
     }
@@ -1141,9 +1051,7 @@ public class EffectRenderHelper {
         if (mFaceDetector.isInited() && mFaceDetector.isInitedAttri() && isDetect106Face) {
             int attrConfig = 0;
             if (flag) {
-                attrConfig |= (BEF_FACE_ATTRIBUTE_EXPRESSION | BEF_FACE_ATTRIBUTE_HAPPINESS |
-                        BEF_FACE_ATTRIBUTE_AGE | BEF_FACE_ATTRIBUTE_GENDER |
-                        BEF_FACE_ATTRIBUTE_RACIAL | BEF_FACE_ATTRIBUTE_ATTRACTIVE);
+                attrConfig |= (BEF_FACE_ATTRIBUTE_EXPRESSION | BEF_FACE_ATTRIBUTE_HAPPINESS | BEF_FACE_ATTRIBUTE_AGE | BEF_FACE_ATTRIBUTE_GENDER | BEF_FACE_ATTRIBUTE_RACIAL | BEF_FACE_ATTRIBUTE_ATTRACTIVE);
             }
 
             mFaceDetector.setAttriDetectConfig(attrConfig);
@@ -1164,19 +1072,14 @@ public class EffectRenderHelper {
      */
     public void setHandDetectOn(boolean flag) {
         isDetectHand = flag;
-
     }
 
     public void setPortraitMattingOn(boolean flag) {
         isMattingPortrait = flag;
-
-
     }
 
     public void setParsingHair(boolean parsingHair) {
         isParsingHair = parsingHair;
-
-
     }
 
     /**
@@ -1196,7 +1099,7 @@ public class EffectRenderHelper {
             setFilter(mFilterResource);
 
         }
-        if (!TextUtils.isEmpty(mStickerResource)){
+        if (!TextUtils.isEmpty(mStickerResource)) {
             setSticker(mStickerResource);
         }
 

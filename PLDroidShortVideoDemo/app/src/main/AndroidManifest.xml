@@ -126,16 +126,6 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
 
-        <activity android:name=".bytedance.MainActivity"
-            android:configChanges="locale|layoutDirection"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity
-            android:name=".bytedance.PermissionsActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleInstance"/>
-
     </application>
 
 </manifest>

@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.bytedance.labcv.effectsdk.BefFaceInfo;
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 
 import static com.bytedance.labcv.effectsdk.BytedEffectConstants.FaceAction.*;
 
-public class FaceInfoFragment extends AppCompatDialogFragment implements MainActivity.OnCloseListener {
+public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRecordActivity.OnCloseListener {
     private TextView tvBlinkEye;
     private TextView tvShakeHead;
     private TextView tvNod;

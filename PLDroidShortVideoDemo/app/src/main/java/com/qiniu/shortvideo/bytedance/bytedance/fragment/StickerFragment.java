@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 
 import com.qiniu.shortvideo.bytedance.R;
-import com.qiniu.shortvideo.bytedance.bytedance.MainActivity;
+import com.qiniu.shortvideo.bytedance.activity.VideoRecordActivity;
 import com.qiniu.shortvideo.bytedance.bytedance.adapter.StickerRVAdapter;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.StickerContract;
 import com.qiniu.shortvideo.bytedance.bytedance.contract.presenter.StickerPresenter;
@@ -20,7 +20,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.utils.ToasUtils;
 import java.io.File;
 
 public class StickerFragment extends BaseFeatureFragment<StickerContract.Presenter, StickerFragment.IStickerCallback>
-        implements StickerRVAdapter.OnItemClickListener, MainActivity.OnCloseListener, StickerContract.View {
+        implements StickerRVAdapter.OnItemClickListener, VideoRecordActivity.OnCloseListener, StickerContract.View {
     private RecyclerView rv;
 
     @Nullable
