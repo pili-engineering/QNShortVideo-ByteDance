@@ -32,8 +32,10 @@ public class FaceDetectFragment extends BaseFeatureFragment<IPresenter, FaceDete
     public interface IFaceCallback {
         // 人脸检测
         void face106On(boolean flag);
+
         // 人脸属性
         void faceAttrOn(boolean flag);
+
         // 人脸280
         void faceExtraOn(boolean flag);
     }
@@ -83,7 +85,8 @@ public class FaceDetectFragment extends BaseFeatureFragment<IPresenter, FaceDete
                 if (!bv106.isOn()) {
                     ToasUtils.show(getString(R.string.open_face106_fist));
                     return;
-                };
+                }
+                ;
 
                 boolean is280On = !bv280.isOn();
                 getCallback().faceExtraOn(is280On);
@@ -93,7 +96,8 @@ public class FaceDetectFragment extends BaseFeatureFragment<IPresenter, FaceDete
                 if (!bv106.isOn()) {
                     ToasUtils.show(getString(R.string.open_face106_fist));
                     return;
-                };
+                }
+                ;
 
                 boolean isAttrOn = !bvAttr.isOn();
                 getCallback().faceAttrOn(isAttrOn);

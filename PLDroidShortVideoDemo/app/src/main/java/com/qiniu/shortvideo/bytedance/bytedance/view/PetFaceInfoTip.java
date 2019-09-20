@@ -14,9 +14,9 @@ import com.bytedance.labcv.effectsdk.BefPetFaceInfo;
 import com.bytedance.labcv.effectsdk.BytedEffectConstants;
 import com.qiniu.shortvideo.bytedance.R;
 
-public class PetFaceInfoTip  extends ResultTip<BefPetFaceInfo.PetFace> {
+public class PetFaceInfoTip extends ResultTip<BefPetFaceInfo.PetFace> {
     private static final String TAG = "PetFaceInfoTip";
-    public final int[] PET_FACE_TYPES = {R.string.cat, R.string.dog,R.string.human,R.string.unknown};
+    public final int[] PET_FACE_TYPES = {R.string.cat, R.string.dog, R.string.human, R.string.unknown};
     private TextView tvPetFaceType;
 
     private SparseArray<TextView> mActionMap = null;
@@ -65,7 +65,7 @@ public class PetFaceInfoTip  extends ResultTip<BefPetFaceInfo.PetFace> {
         }
 
         int type = item.getType();
-        if (type > PET_FACE_TYPES.length){
+        if (type > PET_FACE_TYPES.length) {
             type = PET_FACE_TYPES.length;
         }
         tvPetFaceType.setText(PET_FACE_TYPES[type - 1]);
@@ -79,16 +79,16 @@ public class PetFaceInfoTip  extends ResultTip<BefPetFaceInfo.PetFace> {
             }
         }
 
-        Rect rect = getRectInScreenCord(item.getRect().toRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth) ;
-        double widthRatio  = surfaceViewWidth * 1.0 /previewWidth;
-        double heightRatio  = surfaceViewHeight * 1.0 /preViewHeight;
+        Rect rect = getRectInScreenCord(item.getRect().toRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
+        double widthRatio = surfaceViewWidth * 1.0 / previewWidth;
+        double heightRatio = surfaceViewHeight * 1.0 / preViewHeight;
         double ratio = Math.max(widthRatio, heightRatio);
         int top = new Double(rect.top * ratio).intValue();
         int left = new Double(rect.left * ratio).intValue();
         int bottom = new Double(rect.bottom * ratio).intValue();
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.getLayoutParams();
         marginLayoutParams.leftMargin = left;
-        marginLayoutParams.topMargin = top >height?(top - height):bottom;
+        marginLayoutParams.topMargin = top > height ? (top - height) : bottom;
         setLayoutParams(marginLayoutParams);
 
     }

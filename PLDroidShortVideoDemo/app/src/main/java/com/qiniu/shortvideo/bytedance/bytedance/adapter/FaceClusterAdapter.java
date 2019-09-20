@@ -46,14 +46,14 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.mTv.setText("");
         holder.mRoot.setOnClickListener(null);
-        if (mClusterResultList != null){
-            if (DEFAULT_INDEX == mCurIndex ){
+        if (mClusterResultList != null) {
+            if (DEFAULT_INDEX == mCurIndex) {
                 Glide.with(mContext)
                         .load(mClusterResultList.get(position).get(0))
                         .into(holder.mIv);
-                if (position >= mClusterNums){
+                if (position >= mClusterNums) {
                     holder.mTv.setText(mContext.getString(R.string.face_cluster_null_class_name));
-                }else {
+                } else {
                     holder.mTv.setText(mContext.getString(R.string.face_cluster_class_name) + position);
                 }
                 holder.mRoot.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +62,12 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
                         openCluster(position);
                     }
                 });
-            }else{
+            } else {
                 Glide.with(mContext)
                         .load(mClusterResultList.get(mCurIndex).get(position))
                         .into(holder.mIv);
             }
-        }else {
+        } else {
             Glide.with(mContext)
                     .load(mChooseList.get(position))
                     .listener(new RequestListener<String, GlideDrawable>() {
@@ -91,8 +91,8 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
 
     @Override
     public int getItemCount() {
-        if (mClusterResultList != null){
-            if (DEFAULT_INDEX != mCurIndex){
+        if (mClusterResultList != null) {
+            if (DEFAULT_INDEX != mCurIndex) {
                 return mClusterResultList.get(mCurIndex).size();
             }
             return mClusterResultList.size();
@@ -106,7 +106,7 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
         notifyDataSetChanged();
     }
 
-    public void setOpenCluserListener(OnItemClickListener listener){
+    public void setOpenCluserListener(OnItemClickListener listener) {
         mClickListener = listener;
     }
 
@@ -115,13 +115,13 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
         notifyDataSetChanged();
     }
 
-    private void openCluster(int pos){
+    private void openCluster(int pos) {
         mCurIndex = pos;
         mClickListener.onOpenCluster();
         notifyDataSetChanged();
     }
 
-    public void resetCluster(){
+    public void resetCluster() {
         mCurIndex = DEFAULT_INDEX;
         notifyDataSetChanged();
     }
@@ -138,6 +138,7 @@ public class FaceClusterAdapter extends RecyclerView.Adapter<FaceClusterAdapter.
         View mRoot;
         ImageView mIv;
         TextView mTv;
+
         ViewHolder(View itemView) {
             super(itemView);
             mIv = itemView.findViewById(R.id.iv_cluster_item);

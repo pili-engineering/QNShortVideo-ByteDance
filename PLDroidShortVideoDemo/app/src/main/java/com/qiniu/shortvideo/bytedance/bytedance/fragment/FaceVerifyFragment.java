@@ -87,7 +87,7 @@ public class FaceVerifyFragment
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        if (intent.resolveActivity(getActivity().getPackageManager())!= null){
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivityForResult(intent, REQUEST_ALBUM);
         } else {
             ToasUtils.show(getString(R.string.ablum_not_supported));

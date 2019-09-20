@@ -36,7 +36,6 @@ public class LineProgram extends ShaderProgram {
     }
 
 
-
     public void drawRect(RectF rect, int color, float lineWidth) {
         useProgram();
 
@@ -62,7 +61,7 @@ public class LineProgram extends ShaderProgram {
 
         mRectFb.position(0);
         GLES20.glVertexAttribPointer(mPositionLocation, POSITION_COUNT, GLES20.GL_FLOAT,
-            false, STRIDE, mRectFb);
+                false, STRIDE, mRectFb);
         GLES20.glEnableVertexAttribArray(mPositionLocation);
 
         float r = Color.red(color) / 255f;
@@ -96,10 +95,9 @@ public class LineProgram extends ShaderProgram {
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
 
-        for(int i = 0; i < points.length; i ++)
-        {
-            pointpPosis[i*2] = transformX(points[i].x);
-            pointpPosis[i*2+1] = transformY(points[i].y);
+        for (int i = 0; i < points.length; i++) {
+            pointpPosis[i * 2] = transformX(points[i].x);
+            pointpPosis[i * 2 + 1] = transformY(points[i].y);
         }
 
         pointsBuffer.position(0);

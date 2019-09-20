@@ -1390,8 +1390,8 @@ public class VideoRecordActivity extends FragmentActivity implements PLRecordSta
 
                 texId = mTextureProcessor.draw(texId);
                 BytedEffectConstants.Rotation rotation = OrientationSensor.getOrientation();
-                int destTexId=mEffectRenderHelper.processTexture(texId, rotation, timestampNs);
-                destTexId=mTextureProcessor.draw(destTexId);
+                int destTexId = mEffectRenderHelper.processTexture(texId, rotation, timestampNs);
+                destTexId = mTextureProcessor.draw(destTexId);
 
                 return destTexId;
             }

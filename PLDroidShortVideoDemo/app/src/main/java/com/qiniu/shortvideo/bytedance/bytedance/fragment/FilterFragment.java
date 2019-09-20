@@ -59,6 +59,6 @@ public class FilterFragment extends BaseFeatureFragment<FilterContract.Presenter
 
     @Override
     public void onClose() {
-        ((FilterRVAdapter)rv.getAdapter()).setSelect(0);
+        ((FilterRVAdapter) rv.getAdapter()).setSelect(0);
     }
 }

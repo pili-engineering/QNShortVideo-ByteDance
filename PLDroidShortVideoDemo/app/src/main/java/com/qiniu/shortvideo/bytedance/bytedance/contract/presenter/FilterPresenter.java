@@ -19,7 +19,7 @@ import java.util.List;
  * Created by QunZhang on 2019-07-21 13:58
  */
 public class FilterPresenter extends FilterContract.Presenter {
-    private static final int[] IMAGES = new int[] {
+    private static final int[] IMAGES = new int[]{
             R.drawable.zhengchang,
             R.drawable.baixi,
             R.drawable.naiyou,

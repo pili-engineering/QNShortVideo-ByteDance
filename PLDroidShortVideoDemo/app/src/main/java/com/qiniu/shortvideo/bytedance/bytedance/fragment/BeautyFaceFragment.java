@@ -57,11 +57,11 @@ public class BeautyFaceFragment extends BaseFeatureFragment<ItemGetContract.Pres
 
     @Override
     public void onProgress(float progress) {
-        ((ButtonViewRVAdapter)rv.getAdapter()).onProgress(progress);
+        ((ButtonViewRVAdapter) rv.getAdapter()).onProgress(progress);
     }
 
     @Override
     public void onClose() {
-        ((ButtonViewRVAdapter)rv.getAdapter()).onClose();
+        ((ButtonViewRVAdapter) rv.getAdapter()).onClose();
     }
 }

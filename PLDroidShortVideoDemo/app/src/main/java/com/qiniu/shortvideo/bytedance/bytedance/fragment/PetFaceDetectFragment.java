@@ -14,7 +14,7 @@ import com.qiniu.shortvideo.bytedance.bytedance.utils.ToasUtils;
 import com.qiniu.shortvideo.bytedance.bytedance.view.ButtonView;
 
 
-public class PetFaceDetectFragment  extends BaseFeatureFragment<IPresenter, PetFaceDetectFragment.IFaceCallback>
+public class PetFaceDetectFragment extends BaseFeatureFragment<IPresenter, PetFaceDetectFragment.IFaceCallback>
         implements View.OnClickListener, VideoRecordActivity.OnCloseListener {
     // 关键点跟踪
     private ButtonView bvFace;

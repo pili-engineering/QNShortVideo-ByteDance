@@ -25,6 +25,7 @@ public class SkeletonDetectFragment
     public interface ISkeletonCallback {
         void skeletonDetectOn(boolean on);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

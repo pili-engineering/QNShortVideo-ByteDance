@@ -68,7 +68,7 @@ public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFr
         // 添加人像对比 Fragment
         mFragmentList.add(new FaceVerifyFragment().setCallback(getCallback()));
         titleList.add(getString(R.string.tab_face_verify));
-        mFaceClusterFragment= new FaceClusterFragment().setCallback(getCallback());
+        mFaceClusterFragment = new FaceClusterFragment().setCallback(getCallback());
         mFragmentList.add(mFaceClusterFragment);
         titleList.add(getString(R.string.tab_face_cluster));
 
@@ -93,7 +93,6 @@ public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFr
     }
 
 
-
     public interface IIdentifyCallback extends
             FaceDetectFragment.IFaceCallback,
             PetFaceDetectFragment.IFaceCallback,
@@ -101,6 +100,6 @@ public class IdentifyFragment extends BaseFeatureFragment<IPresenter, IdentifyFr
             SkeletonDetectFragment.ISkeletonCallback,
             SegmentationFragment.IPortraitMattingCallback,
             FaceVerifyFragment.IFaceVerifyCallback,
-            HumanDistanceFragment.IDistCallback
-    { }
+            HumanDistanceFragment.IDistCallback {
+    }
 }

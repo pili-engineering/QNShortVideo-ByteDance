@@ -35,7 +35,7 @@ public class TipManager {
     /**
      * should setVisibility = INVISIABLE when add the view to screen
      */
-    public void addHandTip(){
+    public void addHandTip() {
         if (mHandTipsAdded) {
             return;
         }
@@ -53,12 +53,12 @@ public class TipManager {
     /**
      * should setVisibility = INVISIABLE when add the view to screen
      */
-    public void addPetFaceTip(){
+    public void addPetFaceTip() {
         LogUtils.d("addPetFaceTip");
-        if (mPetFaceTipsAdded){
+        if (mPetFaceTipsAdded) {
             return;
         }
-        for (int i = 0; i < MAX_PET_FACE_NUM; i++){
+        for (int i = 0; i < MAX_PET_FACE_NUM; i++) {
             petFaceTips[i] = new PetFaceInfoTip(mContext);
             petFaceTips[i].setVisibility(View.INVISIBLE);
             rootContainer.addView(petFaceTips[i]);
@@ -67,12 +67,12 @@ public class TipManager {
         mPetFaceTipsAdded = true;
     }
 
-    public void addDistanceTips(){
+    public void addDistanceTips() {
         if (mDisTipsAdded) {
             return;
         }
-        for (int i = 0; i < 10;i++){
-            humanDistanceTips[i] =  new HumanDistanceTip(mContext);
+        for (int i = 0; i < 10; i++) {
+            humanDistanceTips[i] = new HumanDistanceTip(mContext);
             humanDistanceTips[i].setVisibility(View.GONE);
             rootContainer.addView(humanDistanceTips[i]);
         }
@@ -83,11 +83,11 @@ public class TipManager {
     /**
      * remove distance tips out of the screen
      */
-    public void removeDistanceTips(){
+    public void removeDistanceTips() {
         if (!mDisTipsAdded) {
             return;
         }
-        for (int i = 0; i < 10;i++){
+        for (int i = 0; i < 10; i++) {
             rootContainer.removeView(humanDistanceTips[i]);
         }
         mDisTipsAdded = false;
@@ -96,7 +96,7 @@ public class TipManager {
     /**
      * remove hand tips out of the screen
      */
-    public void removeHandTip(){
+    public void removeHandTip() {
         if (!mHandTipsAdded) {
             return;
         }
@@ -108,11 +108,11 @@ public class TipManager {
     /**
      * remove hand tips out of the screen
      */
-    public void removePetFaceTip(){
+    public void removePetFaceTip() {
         if (!mPetFaceTipsAdded) {
             return;
         }
-        for (int i = 0; i < 10;i++){
+        for (int i = 0; i < 10; i++) {
             rootContainer.removeView(petFaceTips[i]);
         }
         mPetFaceTipsAdded = false;
@@ -123,7 +123,7 @@ public class TipManager {
         if (!mHandTipsAdded) {
             return;
         }
-        if (null ==  handInfo || handInfo.getHandCount() == 0)  {
+        if (null == handInfo || handInfo.getHandCount() == 0) {
             handTips[0].setVisibility(View.GONE);
             handTips[1].setVisibility(View.GONE);
             return;
@@ -137,15 +137,15 @@ public class TipManager {
             case 1:
                 handTips[0].setVisibility(View.VISIBLE);
                 handTips[1].setVisibility(View.GONE);
-                handTips[0].updateInfo(hands[0],  preViewHeight,  previewWidth,  surfaceViewHeight,  surfaceViewWidth);
+                handTips[0].updateInfo(hands[0], preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
 
                 break;
             case 2:
                 handTips[0].setVisibility(View.VISIBLE);
                 handTips[1].setVisibility(View.VISIBLE);
 
-                handTips[0].updateInfo(hands[0], preViewHeight,  previewWidth,  surfaceViewHeight,  surfaceViewWidth);
-                handTips[1].updateInfo(hands[1], preViewHeight,  previewWidth,  surfaceViewHeight,  surfaceViewWidth);
+                handTips[0].updateInfo(hands[0], preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
+                handTips[1].updateInfo(hands[1], preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
 
                 break;
         }
@@ -157,13 +157,13 @@ public class TipManager {
         if (!mDisTipsAdded) {
             return;
         }
-        if (null ==  distanceInfo )  {
-            for (HumanDistanceTip tip: humanDistanceTips){
+        if (null == distanceInfo) {
+            for (HumanDistanceTip tip : humanDistanceTips) {
                 tip.setVisibility(View.GONE);
             }
             return;
         }
-        for (int i = 9;i > (distanceInfo.getFaceCount() -1) ; i--){
+        for (int i = 9; i > (distanceInfo.getFaceCount() - 1); i--) {
 
             humanDistanceTips[i].setVisibility(View.GONE);
         }
@@ -172,9 +172,9 @@ public class TipManager {
         }
 
         BefDistanceInfo.BefDistance[] results = distanceInfo.getBefDistance();
-        for (int i = 0; i < results.length;i++){
+        for (int i = 0; i < results.length; i++) {
             humanDistanceTips[i].setVisibility(View.VISIBLE);
-            humanDistanceTips[i].updateInfo(results[i], preViewHeight,  previewWidth,  surfaceViewHeight,  surfaceViewWidth);
+            humanDistanceTips[i].updateInfo(results[i], preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
         }
 
     }
@@ -184,13 +184,13 @@ public class TipManager {
         if (!mPetFaceTipsAdded) {
             return;
         }
-        if (null ==  petFaceInfo )  {
-            for (PetFaceInfoTip tip: petFaceTips){
+        if (null == petFaceInfo) {
+            for (PetFaceInfoTip tip : petFaceTips) {
                 tip.setVisibility(View.GONE);
             }
             return;
         }
-        for (int i = 9;i > (petFaceInfo.getFaceCount() -1) ; i--){
+        for (int i = 9; i > (petFaceInfo.getFaceCount() - 1); i--) {
 
             petFaceTips[i].setVisibility(View.GONE);
         }
@@ -199,9 +199,9 @@ public class TipManager {
         }
 
         BefPetFaceInfo.PetFace[] results = petFaceInfo.getFace90();
-        for (int i = 0; i < results.length;i++){
+        for (int i = 0; i < results.length; i++) {
             petFaceTips[i].setVisibility(View.VISIBLE);
-            petFaceTips[i].updateInfo(results[i], preViewHeight,  previewWidth,  surfaceViewHeight,  surfaceViewWidth);
+            petFaceTips[i].updateInfo(results[i], preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
         }
 
 

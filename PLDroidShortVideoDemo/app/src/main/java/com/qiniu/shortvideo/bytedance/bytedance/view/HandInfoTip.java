@@ -11,7 +11,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 
-
 import com.bytedance.labcv.effectsdk.BefHandInfo;
 import com.qiniu.shortvideo.bytedance.R;
 
@@ -20,7 +19,7 @@ public class HandInfoTip extends ResultTip<BefHandInfo.BefHand> {
     private TextView tvGesture;
     private TextView tvPunching;
     private TextView tvClapping;
-    static String[] HandTypes= {
+    static String[] HandTypes = {
             "heart_a",
             "heart_b",
             "heart_c",
@@ -105,7 +104,6 @@ public class HandInfoTip extends ResultTip<BefHandInfo.BefHand> {
                 tvPunching.setBackgroundColor(getResources().getColor(R.color.selected_color));
 
 
-
                 tvClapping.setBackgroundColor(Color.TRANSPARENT);
                 break;
             case 2:
@@ -123,20 +121,18 @@ public class HandInfoTip extends ResultTip<BefHandInfo.BefHand> {
 
         tvGesture.setText(gestureStr);
 
-        Rect rect = getRectInScreenCord(info.getRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth) ;
+        Rect rect = getRectInScreenCord(info.getRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
 
-        double widthRatio  = surfaceViewWidth * 1.0 /previewWidth;
-        double heightRatio  = surfaceViewHeight * 1.0 /preViewHeight;
+        double widthRatio = surfaceViewWidth * 1.0 / previewWidth;
+        double heightRatio = surfaceViewHeight * 1.0 / preViewHeight;
         double ratio = Math.max(widthRatio, heightRatio);
         int top = new Double(rect.top * ratio).intValue();
         int left = new Double(rect.left * ratio).intValue();
         int bottom = new Double(rect.bottom * ratio).intValue();
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.getLayoutParams();
         marginLayoutParams.leftMargin = left;
-        marginLayoutParams.topMargin = top >height?(top - height):bottom;
+        marginLayoutParams.topMargin = top > height ? (top - height) : bottom;
         setLayoutParams(marginLayoutParams);
-
-
 
 
     }

@@ -44,8 +44,8 @@ public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRe
     private int mExpressionOffColor;
 
     private SparseArray<TextView> mActionMap = null;
-    public final int[] mExpression = {R.string.anger,R.string.nausea,R.string.fear,R.string.happy,R.string.sad,R.string.surprise,R.string.poker_face};
-    public final int[] mRace = {R.string.white,R.string.yellow,R.string.brown, R.string.black};
+    public final int[] mExpression = {R.string.anger, R.string.nausea, R.string.fear, R.string.happy, R.string.sad, R.string.surprise, R.string.poker_face};
+    public final int[] mRace = {R.string.white, R.string.yellow, R.string.brown, R.string.black};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRe
         super.onResume();
     }
 
-    public void resetProperty(){
+    public void resetProperty() {
         tvFaceCount.setText("0");
         tvYaw.setText("0.0");
         tvPitch.setText("0.0");
@@ -106,7 +106,7 @@ public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRe
             mActionMap.valueAt(i).setTextColor(mExpressionOffColor);
         }
 
-        if (llAttr.getVisibility() == View.VISIBLE ) {
+        if (llAttr.getVisibility() == View.VISIBLE) {
             tvAge.setText("");
             tvGender.setText("");
             tvBeauty.setText("");
@@ -121,11 +121,11 @@ public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRe
     public void updateProperty(BefFaceInfo befFaceInfo, boolean isFaceAttrOn) {
         if (this.isVisible()) {
             // while  license error/ detect error will get a null faceinfo
-            if ( befFaceInfo != null) {
+            if (befFaceInfo != null) {
                 int faceCount = befFaceInfo.getFace106s().length;
                 if (faceCount >= 1) {
-                    tvTotalFace.setText(""+ (befFaceInfo.getFace106s()[0].getID() + 1));
-                    tvFaceCount.setText(""+faceCount);
+                    tvTotalFace.setText("" + (befFaceInfo.getFace106s()[0].getID() + 1));
+                    tvFaceCount.setText("" + faceCount);
                     BefFaceInfo.Face106 face106 = befFaceInfo.getFace106s()[0];
                     tvYaw.setText(String.format("%.1f", face106.getYaw()));
                     tvPitch.setText(String.format("%.1f", face106.getPitch()));
@@ -145,10 +145,10 @@ public class FaceInfoFragment extends AppCompatDialogFragment implements VideoRe
                             BefFaceInfo.FaceAttri attr = befFaceInfo.getAttris()[0];
                             llAttr.setVisibility(View.VISIBLE);
                             tvAge.setText(String.format("%.0f", attr.getAge()));
-                            tvGender.setText((attr.getBoy_prob() > 0.5f ? getString(R.string.male):getString(R.string.female)));
+                            tvGender.setText((attr.getBoy_prob() > 0.5f ? getString(R.string.male) : getString(R.string.female)));
                             tvBeauty.setText(String.format("%.0f", attr.getAttractive()));
                             int racialType = attr.getRacial_type();
-                            if ( attr.getRacial_type() > mRace.length || attr.getRacial_type() < 0) {
+                            if (attr.getRacial_type() > mRace.length || attr.getRacial_type() < 0) {
                                 racialType = 0;
                             }
                             tvRace.setText(getString(mRace[racialType]));

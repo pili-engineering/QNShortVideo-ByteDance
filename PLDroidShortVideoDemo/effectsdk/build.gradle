@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    compile LIB_SUPPORT_ANNOTATIONS
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation LIB_SUPPORT_ANNOTATIONS
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
 }

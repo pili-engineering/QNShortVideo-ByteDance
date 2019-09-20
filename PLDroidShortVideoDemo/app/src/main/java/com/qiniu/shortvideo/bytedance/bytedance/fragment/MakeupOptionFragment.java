@@ -75,7 +75,7 @@ public class MakeupOptionFragment
 
     @Override
     public void onItemClick(ButtonItem item) {
-        getCallback().onOptionSelect(item.getNode(), ((ButtonViewRVAdapter)rv.getAdapter()).getSelect());
+        getCallback().onOptionSelect(item.getNode(), ((ButtonViewRVAdapter) rv.getAdapter()).getSelect());
     }
 
     interface IMakeupOptionCallback {
@@ -86,7 +86,8 @@ public class MakeupOptionFragment
 
         /**
          * 点击某一项之后，回调给 EffectFragment 处理
-         * @param node 点击项的 node
+         *
+         * @param node   点击项的 node
          * @param select 点击项所处位置
          */
         void onOptionSelect(ComposerNode node, int select);

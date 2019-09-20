@@ -167,9 +167,6 @@ public class FaceClusterFragment extends BaseFeatureFragment implements FaceClus
                 .choose(MimeType.of(JPEG, PNG, BMP, WEBP))
                 .countable(true)
                 .maxSelectable(Integer.MAX_VALUE)
-//                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-//                .gridExpectedSize(60)
-//                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 .thumbnailScale(0.85f)
                 .imageEngine(new GlideEngine())
@@ -178,7 +175,6 @@ public class FaceClusterFragment extends BaseFeatureFragment implements FaceClus
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("飞","传递到了"+requestCode);
         if (requestCode == REQUEST_CODE_CHOOSE  && resultCode == RESULT_OK) {
 
             LogUtils.d( "Uris: " + Matisse.obtainResult(data));

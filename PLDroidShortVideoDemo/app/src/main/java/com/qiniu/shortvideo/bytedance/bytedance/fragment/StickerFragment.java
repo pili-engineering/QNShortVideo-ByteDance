@@ -52,7 +52,7 @@ public class StickerFragment extends BaseFeatureFragment<StickerContract.Present
     public void onClose() {
         getCallback().onStickerSelected(null);
 
-        ((StickerRVAdapter)rv.getAdapter()).setSelect(0);
+        ((StickerRVAdapter) rv.getAdapter()).setSelect(0);
     }
 
     public interface IStickerCallback {

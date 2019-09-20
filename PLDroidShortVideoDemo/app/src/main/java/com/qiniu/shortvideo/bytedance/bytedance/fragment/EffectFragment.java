@@ -81,6 +81,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
     public static final float NO_VALUE = -1F;
     public static final int NO_POSITION = -1;
     public static final Map<Integer, Float> DEFAULT_VALUE;
+
     static {
         @SuppressLint("UseSparseArrays") Map<Integer, Float> map = new HashMap<>();
         // 美颜
@@ -253,7 +254,6 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
                 dispatchProgress(DEFAULT_VALUE.get(mSelectType));
 
 
-
             }
         }));
         titleList.add(getString(R.string.tab_face_beauty_body));
@@ -261,7 +261,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
         // 美妆
         mFragmentList.add(new BeautyFaceFragment().setType(TYPE_MAKEUP).setCallback(new BeautyFaceFragment.IBeautyCallBack() {
             @Override
-            public void onBeautySelect (ButtonItem item) {
+            public void onBeautySelect(ButtonItem item) {
                 mSelectType = item.getNode().getId();
                 if (mSelectType == TYPE_CLOSE) {
                     closeMakeup();
@@ -313,6 +313,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
      * 将进度分发出去，有两个出口
      * 1、分到对应的 Fragment 中供其更改 UI
      * 2、传递给 Callback 供 EffectRenderHelper 渲染
+     *
      * @param progress 进度，0～100
      */
     private void dispatchProgress(float progress) {
@@ -457,6 +458,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
      * 显示 or 隐藏 MakeupOptionFragment，在没有实例的情况下会先初始化一个实例
      * 显示一个 MakeupOptionFragment 的时候还会设置其默认选择位置，这个位置保存在
      * {@link this#mMakeupOptionSelectMap} 中
+     *
      * @param isShow 是否显示
      */
     private void showOrHideMakeupOptionFragment(boolean isShow) {
@@ -472,11 +474,11 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
             tvTitle.animate().alpha(1).setDuration(ANIMATION_DURATION).start();
             if (makeupOptionFragment == null) {
                 makeupOptionFragment = generateMakeupOptionFragment();
-                ((MakeupOptionFragment)makeupOptionFragment).setMakeupType(mSelectType, mMakeupOptionSelectMap.get(mSelectType, 0));
+                ((MakeupOptionFragment) makeupOptionFragment).setMakeupType(mSelectType, mMakeupOptionSelectMap.get(mSelectType, 0));
 
                 transaction.add(R.id.fl_identify, makeupOptionFragment, TAG_MAKEUP_OPTION_FRAGMENT).commit();
             } else {
-                ((MakeupOptionFragment)makeupOptionFragment).setMakeupType(mSelectType, mMakeupOptionSelectMap.get(mSelectType, 0));
+                ((MakeupOptionFragment) makeupOptionFragment).setMakeupType(mSelectType, mMakeupOptionSelectMap.get(mSelectType, 0));
                 transaction.show(makeupOptionFragment).commit();
             }
         } else {
@@ -513,6 +515,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
 
     /**
      * 从缓存表找到对应类型的缓存值
+     *
      * @param type 特效类型
      * @return 缓存值，没有则返回 0
      */
@@ -533,6 +536,7 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
     public interface IProgressCallback {
         /**
          * 用于进度更改时的回调，将进度分发到子 Fragment 中
+         *
          * @param progress 进度
          */
         void onProgress(float progress);
@@ -541,22 +545,26 @@ public class EffectFragment extends BaseFeatureFragment<EffectContract.Presenter
     public interface IEffectCallback {
         /**
          * 更新美妆美颜设置
+         *
          * @param nodes 字符串数组，存储所有设置的美颜内容，当 node 长度为 0 时意为关闭美妆
          */
         void updateComposeNodes(String[] nodes);
 
         /**
          * 更新某一个效果的强度
+         *
          * @param node 效果对应 ComposerNode
          */
         void updateComposeNodeIntensity(ComposerNode node);
 
         // 滤镜
         void onFilterSelected(File file);
+
         void onFilterValueChanged(float cur);
 
         /**
          * 设置是否处理特效
+         *
          * @param isOn if false，则在处理纹理的时候不使用 RenderManager 处理原始纹理，则不会有效果
          */
         void setEffectOn(boolean isOn);

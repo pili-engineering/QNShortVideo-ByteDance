@@ -190,8 +190,8 @@ public class ProgressBar extends View {
         int textHeight = (int) (metrics.bottom - metrics.top);
 
         float cx = mLeftPadding + (mWidth - mLeftPadding - mRightPadding) * mProgress;
-        float cy = mLinePosition - mTextHeight + metrics.bottom - textHeight/2F;
-        float radius = textHeight/2F + mTextPadding;
+        float cy = mLinePosition - mTextHeight + metrics.bottom - textHeight / 2F;
+        float radius = textHeight / 2F + mTextPadding;
         canvas.drawCircle(cx, cy, radius, paint);
     }
 
@@ -200,7 +200,7 @@ public class ProgressBar extends View {
         if (isShowText) {
             Paint paint = mPaint;
             paint.setColor(mTextColor);
-            String text = String.valueOf((int)(mProgress * MAX_PROGRESS));
+            String text = String.valueOf((int) (mProgress * MAX_PROGRESS));
 
             float cx = mLeftPadding + (mWidth - mLeftPadding - mRightPadding) * mProgress;
             float cy = mLinePosition - mTextHeight;

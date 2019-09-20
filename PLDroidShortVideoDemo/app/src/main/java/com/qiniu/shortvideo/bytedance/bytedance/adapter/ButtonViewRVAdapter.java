@@ -85,7 +85,7 @@ public class ButtonViewRVAdapter extends SelectRVAdapter<ButtonViewRVAdapter.Vie
     public void onProgress(float progress) {
         if (mSelect != 0 &&
                 ((progress != 0 && mPointOnItems.add(mSelect)) || // Need to show points and hide points before 需要显示点并且之前隐藏点
-                (progress == 0 && mPointOnItems.remove(mSelect)))) { // Need to hide points and show points before 需要隐藏点并且之前显示点
+                        (progress == 0 && mPointOnItems.remove(mSelect)))) { // Need to hide points and show points before 需要隐藏点并且之前显示点
             notifyItemChanged(mSelect);
         }
     }

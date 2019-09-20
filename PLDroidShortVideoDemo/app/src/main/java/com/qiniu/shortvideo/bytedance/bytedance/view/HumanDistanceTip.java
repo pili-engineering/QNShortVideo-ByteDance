@@ -45,16 +45,16 @@ public class HumanDistanceTip extends ResultTip<BefDistanceInfo.BefDistance> {
 
         tvDist.setText(df.format(item.getDis()));
 
-        Rect rect = getRectInScreenCord(item.getFaceRect().toRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth) ;
-        double widthRatio  = surfaceViewWidth * 1.0 /previewWidth;
-        double heightRatio  = surfaceViewHeight * 1.0 /preViewHeight;
+        Rect rect = getRectInScreenCord(item.getFaceRect().toRect(), preViewHeight, previewWidth, surfaceViewHeight, surfaceViewWidth);
+        double widthRatio = surfaceViewWidth * 1.0 / previewWidth;
+        double heightRatio = surfaceViewHeight * 1.0 / preViewHeight;
         double ratio = Math.max(widthRatio, heightRatio);
         int top = new Double(rect.top * ratio).intValue();
         int left = new Double(rect.left * ratio).intValue();
         int bottom = new Double(rect.bottom * ratio).intValue();
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.getLayoutParams();
         marginLayoutParams.leftMargin = left;
-        marginLayoutParams.topMargin = top >height?(top - height):bottom;
+        marginLayoutParams.topMargin = top > height ? (top - height) : bottom;
         setLayoutParams(marginLayoutParams);
 
     }
