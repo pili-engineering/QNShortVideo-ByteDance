@@ -1,1 +1,1 @@
-include ':app', ':effectsdk'
+include ':app'

@@ -58,7 +58,6 @@ dependencies {
     api 'org.adw.library:discrete-seekbar:1.0.1'
     api 'com.github.hackware1993:MagicIndicator:1.5.0'
     api 'com.github.castorflex.smoothprogressbar:library:1.1.0'
-    api project(path: ':effectsdk')
     // develop mode
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
