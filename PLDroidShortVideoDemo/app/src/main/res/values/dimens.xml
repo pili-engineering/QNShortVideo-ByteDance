@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radio_size">16sp</dimen>
+    <dimen name="setting_height">300dp</dimen>
+    <dimen name="toggle_height">25dp</dimen>
+    <dimen name="toggle_width">45dp</dimen>
+
+    <dimen name="radio_height">35dp</dimen>
+    <dimen name="radio_margin">20dp</dimen>
+    <dimen name="radio_padding">6dp</dimen>
+    <dimen name="grid_bound_width">2dp</dimen>
+    <dimen name="hand_info_height">70dp</dimen>
+    <dimen name="distance_info_height">30dp</dimen>
+    <dimen name="pet_face_info_height">60dp</dimen>
+</resources>

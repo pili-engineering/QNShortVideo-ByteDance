@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    sourceSets.main.jni.srcDirs = []
+
+    defaultConfig {
+        applicationId "com.qiniu.shortvideo.bytedance"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionName "2.2.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildTypes {
+        debug{
+            debuggable true
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories{
+        flatDir {
+            dirs 'libs'
+        }
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api LIB_SUPPORT_V4
+    api LIB_APPCOMPAT
+    api LIB_RECYCLERVIEW
+    api LIB_SUPPORT_ANNOTATIONS
+    api LIB_GRIDLAYOUT
+    api LIB_DESIGN
+    api 'com.zcw:togglebutton-library:1.0.0'
+    api 'org.adw.library:discrete-seekbar:1.0.1'
+    api 'com.github.hackware1993:MagicIndicator:1.5.0'
+    api 'com.github.castorflex.smoothprogressbar:library:1.1.0'
+    // develop mode
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    // Optional, if you use support library fragments:
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+    api 'com.google.zxing:core:3.3.3'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.zhihu.android:matisse:0.5.2-beta1'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    api(name: 'android_sdk', ext: 'aar')
+
+    implementation 'com.qiniu:qiniu-android-sdk:7.3.11'
+    implementation files('libs/pldroid-shortvideo-2.2.0.jar')
+    implementation files('libs/pldroid-player-2.1.8.jar')
+    implementation files('libs/EasyAR.jar')
+    implementation files('libs/EasyAR3D.jar')
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation files('libs/universal-image-loader-1.9.4.jar')
+    implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.6'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+}
